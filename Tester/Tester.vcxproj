@@ -20,14 +20,13 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{C9EBAC0C-55D8-468D-B370-BD78AC4E7FDC}</ProjectGuid>
-    <RootNamespace>NewProject</RootNamespace>
+    <ProjectGuid>{4B76ECF5-05F7-46EF-A38D-9F70DDB2D9EF}</ProjectGuid>
+    <RootNamespace>Tester</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
-    <ProjectName>TD2DE</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
@@ -71,7 +70,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)SDL\SDL2-2.0.8\include;$(SolutionDir)SDL\SDL2_ttf-2.0.14\include;$(SolutionDir)SDL\SDL2_mixer-2.0.2\include;$(SolutionDir)SDL\SDL2_image-2.0.3\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)SDL\SDL2-2.0.8\include;$(SolutionDir)SDL\SDL2_ttf-2.0.14\include;$(SolutionDir)SDL\SDL2_mixer-2.0.2\include;$(SolutionDir)SDL\SDL2_image-2.0.3\include;$(IncludePath)$(ProjectDir)../New Project</IncludePath>
     <LibraryPath>$(SolutionDir)SDL\SDL2-2.0.8\lib\x86;$(SolutionDir)SDL\SDL2_image-2.0.3\lib\x86;$(SolutionDir)SDL\SDL2_mixer-2.0.2\lib\x86;$(SolutionDir)SDL\SDL2_ttf-2.0.14\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -80,13 +79,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
-    </Link>
-    <Lib>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
-    </Lib>
+      <SubSystem>Windows</SubSystem>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -125,13 +123,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="TD2DE.h" />
-    <ClInclude Include="TD2DE_Main.h" />
-    <ClInclude Include="TD2DE_Texture.h" />
+    <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="TD2DE_Main.cpp" />
-    <ClCompile Include="TD2DE_Texture.cpp" />
+    <ClInclude Include="Main.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
