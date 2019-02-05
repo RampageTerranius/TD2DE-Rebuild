@@ -50,7 +50,7 @@ namespace TD2DE
 	public:
 		int GetTextureLocation(std::string textureName);
 		TextureNode GetTextureAt(int location);
-		void RemoveTextureAt(int location);
+		void RemoveTextureAt(size_t location);
 		void RemoveAllTextures();
 		int LoadFile(std::string location);
 		int TotalLoadedTextures();

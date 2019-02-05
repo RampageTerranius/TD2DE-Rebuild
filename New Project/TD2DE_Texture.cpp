@@ -3,6 +3,7 @@
 #include <SDL_ttf.h>
 #include <SDL_mixer.h>
 
+#include "TD2DE_Debug.h"
 #include "TD2DE_Texture.h"
 #include "TD2DE_Main.h"
 
@@ -90,18 +91,20 @@ TD2DE::TextureNode TD2DE::Texture::GetTextureAt(int location)
 	return texture.at(location);
 }
 
-void TD2DE::Texture::RemoveTextureAt(int location)
+void TD2DE::Texture::RemoveTextureAt(size_t location)
 {
-	if (location <= texture.size())
+	if (location <= texture.size() && location >= 0)
 	{
 		texture.at(location).Clear();
 		texture.erase(texture.begin() + location);
 	}
+	else if (TD2DE::TD2DE_DEBUG.GetDebugMode() >= TD2DE::eDebug::DEBUG_MEDIUM)
+		TD2DE_DEBUG.LogMessage("[TD2DE_Texture]Unable to clear texture at location " + location);
 }
 
 void TD2DE::Texture::RemoveAllTextures()
 {
-	for (int i = 0; i < texture.size(); i++)
+	for (size_t i = 0; i < texture.size(); i++)
 		RemoveTextureAt(i);
 }
 

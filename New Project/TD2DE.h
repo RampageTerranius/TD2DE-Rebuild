@@ -17,12 +17,9 @@ Created by Tyler Brown
 #include <SDL_ttf.h>
 #include <SDL_mixer.h>	
 
-#include <string>
-
-
 //TD2DE files
+#include "TD2DE_Debug.h"
 #include "TD2DE_Main.h"
-#include "TD2DE_Texture.h" 
-	
+#include "TD2DE_Texture.h"	
 
 #endif

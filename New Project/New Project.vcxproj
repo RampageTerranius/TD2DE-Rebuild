@@ -126,10 +126,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="TD2DE.h" />
+    <ClInclude Include="TD2DE_Debug.h" />
     <ClInclude Include="TD2DE_Main.h" />
     <ClInclude Include="TD2DE_Texture.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="TD2DE_Debug.cpp" />
     <ClCompile Include="TD2DE_Main.cpp" />
     <ClCompile Include="TD2DE_Texture.cpp" />
   </ItemGroup>
