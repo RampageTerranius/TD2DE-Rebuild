@@ -156,3 +156,8 @@ int TD2DE::Texture::TotalLoadedTextures()
 {
 	return texture.size();
 }
+
+void TD2DE::TextureNode::SetRenderRectange(SDL_Rect rect)
+{
+	renderRectangle = rect;
+}

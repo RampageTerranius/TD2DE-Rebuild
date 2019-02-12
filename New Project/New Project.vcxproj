@@ -27,7 +27,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Utility</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
@@ -127,13 +127,9 @@
   <ItemGroup>
     <ClInclude Include="TD2DE.h" />
     <ClInclude Include="TD2DE_Debug.h" />
+    <ClInclude Include="TD2DE_Engine.h" />
     <ClInclude Include="TD2DE_Main.h" />
     <ClInclude Include="TD2DE_Texture.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="TD2DE_Debug.cpp" />
-    <ClCompile Include="TD2DE_Main.cpp" />
-    <ClCompile Include="TD2DE_Texture.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

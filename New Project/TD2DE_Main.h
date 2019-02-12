@@ -9,25 +9,26 @@ namespace TD2DE
 	class TD2DE_Main
 	{
 	public:
-
-		void StartEngine();
-		void ShutdownEngine();
-
 		bool EngineIsRunning();
 
 		SDL_Renderer* renderer;
+		bool engineRunning = false;
 
 	private:
-		bool engineRunnning = false;
 		bool fullScreen;
 		bool commandConsoleEnabled;
 
 		int screenWidth;
 		int screenHeight;
 		int frameRateLimit;
-
-
 	}TD2DE_MAIN;
+}
+
+
+
+bool TD2DE::TD2DE_Main::EngineIsRunning()
+{
+	return engineRunning;
 }
 
 

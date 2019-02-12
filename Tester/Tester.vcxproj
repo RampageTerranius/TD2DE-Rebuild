@@ -128,6 +128,11 @@
   <ItemGroup>
     <ClInclude Include="Main.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\New Project\New Project.vcxproj">
+      <Project>{c9ebac0c-55d8-468d-b370-bd78ac4e7fdc}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

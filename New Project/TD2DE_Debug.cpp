@@ -3,6 +3,15 @@
 
 #include <string>
 
+
+TD2DE::TD2DE_Debug::TD2DE_Debug()
+{
+	debugMode = DEBUG_NONE;
+	debugType = DEBUGTYPE_TOFILEONLY;
+	fileLocation = "";
+	commandConsoleDebugLevel = DEBUG_NONE;
+}
+
 TD2DE::eDebug TD2DE::TD2DE_Debug::GetDebugMode()
 {
 	return debugMode;
@@ -25,13 +34,10 @@ void TD2DE::TD2DE_Debug::SetDebugType(TD2DE::eDebugType newDebugType)
 
 void TD2DE::TD2DE_Debug::SetFileLocation(std::string location)
 {
-	if (!TD2DE_MAIN.EngineIsRunning())
-	{
-		if (TD2DE_DEBUG.GetDebugMode() >= TD2DE::eDebug::DEBUG_HIGH)
-			TD2DE_DEBUG.LogMessage("[TD2DE_Debug]Debug file location has been set to: " +location);
-		fileLocation = location;
-	}
-	else if (TD2DE_DEBUG.GetDebugMode() >= TD2DE::eDebug::DEBUG_HIGH)
-		TD2DE_DEBUG.LogMessage("[TD2DE_Debug]Attempt to change debug file location while engine is running, this is not allowed");
+	fileLocation = location;
 }
 
+void TD2DE::TD2DE_Debug::LogMessage(std::string message)
+{
+
+}

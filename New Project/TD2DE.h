@@ -15,11 +15,12 @@ Created by Tyler Brown
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
-#include <SDL_mixer.h>	
+#include <SDL_mixer.h>
 
 //TD2DE files
 #include "TD2DE_Debug.h"
 #include "TD2DE_Main.h"
-#include "TD2DE_Texture.h"	
+#include "TD2DE_Texture.h"
+#include "TD2DE_Engine.h"
 
 #endif
