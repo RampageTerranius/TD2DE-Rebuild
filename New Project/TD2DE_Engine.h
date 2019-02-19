@@ -45,16 +45,14 @@ namespace TD2DE
 				TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Audio initialization success!", DEBUG_LOW);
 
 		//sdl_mixer
-		/*if (Mix_OpenAudio(TD2DE.GetMHZ(), MIX_DEFAULT_FORMAT, TD2DE.GetChannels(), TD2DE.GetBitRate()) < 0)
+		if (Mix_OpenAudio(TD2DE::TD2DE_AUDIO.GetMhz(), MIX_DEFAULT_FORMAT, TD2DE::TD2DE_AUDIO.GetChannels(), TD2DE::TD2DE_AUDIO.GetBitRate()) < 0)
 		{
-			if (TD2DE.GetDebugMode() >= DEBUG_LOW)
-				TD2DE_DEBUG.LogMessage("Error: Initialize-SDL_Init_Audio_Mixer", true);
+			TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Error: Initialize-SDL_Init_Audio_Mixer", DEBUG_LOW);
 			return false;
 		}
 		else
-			if (TD2DE.GetDebugMode() >= DEBUG_LOW)
-				TD2DE_DEBUG.LogMessage("Info: Mixer sucessfully initialized at settings, " + to_string(TD2DE.GetMHZ()) + ", " + to_string(TD2DE.GetChannels()) + ", " + to_string(TD2DE.GetBitRate()));
-				*/
+				TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Mixer sucessfully initialized at settings, " + std::to_string(TD2DE::TD2DE_AUDIO.GetMhz()) + ", " + std::to_string(TD2DE::TD2DE_AUDIO.GetChannels()) + ", " + std::to_string(TD2DE::TD2DE_AUDIO.GetBitRate()), DEBUG_LOW);
+				
 
 		//timer
 		if (SDL_Init(SDL_INIT_TIMER) != 0)

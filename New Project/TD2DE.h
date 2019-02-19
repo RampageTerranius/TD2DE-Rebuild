@@ -26,6 +26,7 @@ Created by Tyler Brown
 #include "TD2DE_Debug.h"
 #include "TD2DE_Main.h"
 #include "TD2DE_Texture.h"
+#include "TD2DE_Audio.h"
 #include "TD2DE_Engine.h"
 
 #endif
