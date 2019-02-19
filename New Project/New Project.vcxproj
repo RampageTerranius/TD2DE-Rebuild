@@ -130,6 +130,7 @@
     <ClInclude Include="TD2DE_Debug.h" />
     <ClInclude Include="TD2DE_Engine.h" />
     <ClInclude Include="TD2DE_Main.h" />
+    <ClInclude Include="TD2DE_Render.h" />
     <ClInclude Include="TD2DE_Texture.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

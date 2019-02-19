@@ -26,39 +26,92 @@ namespace TD2DE
 		//initialize SDL
 		//video
 		if (SDL_Init(SDL_INIT_VIDEO) != 0)
-		{
+		{	
+			//check if there is a internal SDL error currently and print it if so
+			std::string sdlError;
+
 			if (SDL_GetError() != "")
-					TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Error: Initialize-SDL_Init_Video", DEBUG_LOW);
+			{
+				sdlError = SDL_GetError();
+				SDL_ClearError();
+			}
+
+			TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Error: Initialize-SDL_Init_Video: " + sdlError, DEBUG_LOW);
 			return false;
 		}
 		else
 				TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Video initialization success!", DEBUG_LOW);
 
-		//standard audio
-		if (SDL_Init(SDL_INIT_AUDIO) != 0)
+		//image loader
+		int flags = IMG_INIT_PNG;
+		int init = IMG_Init(flags);
+		if (init != flags)
 		{
+			//check if there is a internal SDL error currently and print it if so
+			std::string sdlError;
+
 			if (SDL_GetError() != "")
-					TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Error: Initialize-SDL_Init_Audio", DEBUG_LOW);
+			{
+				sdlError = SDL_GetError();
+				SDL_ClearError();
+			}
+
+			TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Error: Initialize-SDL_Init-IMG_INIT: Unable to initialize image loader: " + sdlError, DEBUG_LOW);
 			return false;
 		}
 		else
-				TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Audio initialization success!", DEBUG_LOW);
+			TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Image Loading engine initialization success!", DEBUG_LOW);
+
+		//standard audio
+		if (SDL_Init(SDL_INIT_AUDIO) != 0)
+		{
+			//check if there is a internal SDL error currently and print it if so
+			std::string sdlError;
+
+			if (SDL_GetError() != "")
+			{
+				sdlError = SDL_GetError();
+				SDL_ClearError();
+			}
+
+			TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Error: Initialize-SDL_Init_Audio: " + sdlError, DEBUG_LOW);
+			return false;
+		}
+		else
+			TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Audio initialization success!", DEBUG_LOW);
 
 		//sdl_mixer
 		if (Mix_OpenAudio(TD2DE::TD2DE_AUDIO.GetMhz(), MIX_DEFAULT_FORMAT, TD2DE::TD2DE_AUDIO.GetChannels(), TD2DE::TD2DE_AUDIO.GetBitRate()) < 0)
 		{
-			TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Error: Initialize-SDL_Init_Audio_Mixer", DEBUG_LOW);
+			//check if there is a internal SDL error currently and print it if so
+			std::string sdlError;
+
+			if (SDL_GetError() != "")
+			{
+				sdlError = SDL_GetError();
+				SDL_ClearError();
+			}
+
+			TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Error: Initialize-SDL_Init_Audio_Mixer: " + sdlError, DEBUG_LOW);
 			return false;
 		}
 		else
-				TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Mixer sucessfully initialized at settings, " + std::to_string(TD2DE::TD2DE_AUDIO.GetMhz()) + ", " + std::to_string(TD2DE::TD2DE_AUDIO.GetChannels()) + ", " + std::to_string(TD2DE::TD2DE_AUDIO.GetBitRate()), DEBUG_LOW);
+			TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Mixer sucessfully initialized at settings, " + std::to_string(TD2DE::TD2DE_AUDIO.GetMhz()) + ", " + std::to_string(TD2DE::TD2DE_AUDIO.GetChannels()) + ", " + std::to_string(TD2DE::TD2DE_AUDIO.GetBitRate()), DEBUG_LOW);
 				
 
 		//timer
 		if (SDL_Init(SDL_INIT_TIMER) != 0)
 		{
+			//check if there is a internal SDL error currently and print it if so
+			std::string sdlError;
+
 			if (SDL_GetError() != "")
-					TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Error: Initialize-SDL_Init_Timer", DEBUG_LOW);
+			{
+				sdlError = SDL_GetError();
+				SDL_ClearError();
+			}
+
+			TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Error: Initialize-SDL_Init_Timer: " + sdlError, DEBUG_LOW);
 			return false;
 		}
 		else
@@ -67,14 +120,42 @@ namespace TD2DE
 		//ttf loading
 		if (TTF_Init() == -1)
 		{
-			TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Unable to initialize ttf engine", DEBUG_LOW);
+			//check if there is a internal SDL error currently and print it if so
+			std::string sdlError;
+
+			if (SDL_GetError() != "")
+			{
+				sdlError = SDL_GetError();
+				SDL_ClearError();
+			}
+
+			TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Unable to initialize ttf engine: " + sdlError, DEBUG_LOW);
 			return false;
 		}
 		else
-				TD2DE_DEBUG.LogMessage("[TD2DE_Engine]: TTF Engine initialization success!", DEBUG_LOW);
+			TD2DE_DEBUG.LogMessage("[TD2DE_Engine]TTF engine initialization success!", DEBUG_LOW);
 
-		TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Engine started!", DEBUG_LOW);
 
+		//start renderer
+		if (!TD2DE::TD2DE_RENDER.Start())
+		{
+			//check if there is a internal SDL error currently and print it if so
+			std::string sdlError;
+
+			if (SDL_GetError() != "")
+			{
+				sdlError = SDL_GetError();
+				SDL_ClearError();
+			}
+
+			TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Unable to initialize render engine: " + sdlError, DEBUG_LOW);
+			return false;
+		}
+		else
+			TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Render engine initialization success!", DEBUG_LOW);
+
+
+		TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Engine started successfully!", DEBUG_LOW);
 		return true;
 	}
 
