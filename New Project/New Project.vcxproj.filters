@@ -30,5 +30,8 @@
     <ClInclude Include="TD2DE_Engine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TD2DE_Audio.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

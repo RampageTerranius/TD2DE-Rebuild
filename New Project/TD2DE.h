@@ -17,6 +17,11 @@ Created by Tyler Brown
 #include <SDL_ttf.h>
 #include <SDL_mixer.h>
 
+
+//constants
+//const std::string engineVersion = "0.01";
+
+
 //TD2DE files
 #include "TD2DE_Debug.h"
 #include "TD2DE_Main.h"

@@ -156,8 +156,8 @@ void TD2DE::Texture::RemoveTextureAt(size_t location)
 		texture.at(location).Clear();
 		texture.erase(texture.begin() + location);
 	}
-	else if (TD2DE::TD2DE_DEBUG.GetDebugMode() >= TD2DE::eDebug::DEBUG_MEDIUM)
-		TD2DE_DEBUG.LogMessage("[TD2DE_Texture]Unable to clear texture at location " + location);
+	else 
+		TD2DE_DEBUG.LogMessage("[TD2DE_Texture]Unable to clear texture at location " + location, DEBUG_MEDIUM);
 }
 
 void TD2DE::Texture::RemoveAllTextures()

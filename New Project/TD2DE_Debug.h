@@ -2,6 +2,7 @@
 #define _TD2DE_DEBUG_
 
 #include <string>
+#include <fstream>
 
 namespace TD2DE
 {
@@ -28,6 +29,10 @@ namespace TD2DE
 		std::string fileLocation;
 		eDebug commandConsoleDebugLevel;//the command console will only show logs that are <= to this given level
 		bool currentlyLogging;		
+		std::ofstream file;
+
+		bool StartLogging();
+		bool StopLogging();
 
 	public:
 		TD2DE_Debug();
@@ -37,7 +42,7 @@ namespace TD2DE
 		void SetDebugType(eDebugType newDebugType);
 		eDebugType GetDebugType();
 		void SetFileLocation(std::string location);
-		void LogMessage(std::string message);
+		void LogMessage(std::string message, eDebug debugLevel);
 
 		bool Start();
 		bool Stop();
@@ -79,33 +84,92 @@ void TD2DE::TD2DE_Debug::SetFileLocation(std::string location)
 	fileLocation = location;
 }
 
-void TD2DE::TD2DE_Debug::LogMessage(std::string message)
+void TD2DE::TD2DE_Debug::LogMessage(std::string message, eDebug debugLevel)
 {
+	if (currentlyLogging && debugMode >= debugLevel)
+	{
+		file << message.data() << "\n";
 
+		file.flush();
+	}
+}
+
+bool TD2DE::TD2DE_Debug::StartLogging()
+{
+	file.open(fileLocation, std::ios::out | std::ios::trunc);
+
+	if (!file.is_open())
+	{
+		TD2DE::TD2DE_DEBUG.LogMessage("[TD2DE_Debug]debug file failed to open", DEBUG_LOW);
+		return false;
+	}
+
+	TD2DE::TD2DE_DEBUG.LogMessage("[TD2DE_Debug]Debug logging has been started", DEBUG_LOW);
+	return true;
+}
+
+bool TD2DE::TD2DE_Debug::StopLogging()
+{
+	if (!file.is_open())
+	{
+		TD2DE::TD2DE_DEBUG.LogMessage("[TD2DE_Debug]debug file is not open, can not close file", DEBUG_LOW);
+		return false;
+	}
+
+	TD2DE::TD2DE_DEBUG.LogMessage("[TD2DE_Debug]Debug logging has been stopped", DEBUG_LOW);
+
+	file.flush();
+	file.close();		
+
+	return true;
 }
 
 bool TD2DE::TD2DE_Debug::Start()
 {
 	if (currentlyLogging)
 	{
-		if (TD2DE::TD2DE_DEBUG.GetDebugMode() >= eDebug::DEBUG_MEDIUM)
-			TD2DE::TD2DE_DEBUG.LogMessage("[TD2DE_Debug]Attempt to start logging when it is already running");
+		TD2DE::TD2DE_DEBUG.LogMessage("[TD2DE_Debug]Attempt to start logging when it is already running", DEBUG_MEDIUM);
 		return false;
 	}
 
 	if (fileLocation == "")
 	{
-		if (TD2DE::TD2DE_DEBUG.GetDebugMode() >= eDebug::DEBUG_MEDIUM)
-			TD2DE::TD2DE_DEBUG.LogMessage("[TD2DE_Debug]Attempt to start logging when no file location has been given");
+		TD2DE::TD2DE_DEBUG.LogMessage("[TD2DE_Debug]Attempt to start logging when no file location has been given", DEBUG_MEDIUM);
 		return false;
 	}
 
+	if (!StartLogging())
+	{
+		TD2DE::TD2DE_DEBUG.LogMessage("[TD2DE_Debug]Failed to start logging", DEBUG_LOW);
+		return false;
+	}
 
+	currentlyLogging = true;
+	TD2DE::TD2DE_DEBUG.LogMessage("[TD2DE_Debug]Debug logging started!", DEBUG_MEDIUM);
+
+	return true;
 }
 
 bool TD2DE::TD2DE_Debug::Stop()
 {
-	if 
+	if (!currentlyLogging)
+	{
+		TD2DE::TD2DE_DEBUG.LogMessage("[TD2DE_Debug]Attempt to stop logging when it is not running", DEBUG_MEDIUM);
+		return false;
+	}
+	
+	TD2DE::TD2DE_DEBUG.LogMessage("[TD2DE_Debug]stopping debug logging...", DEBUG_MEDIUM);
+
+	if (!StopLogging())
+	{
+		TD2DE::TD2DE_DEBUG.LogMessage("[TD2DE_Debug]Failed to stop logging", DEBUG_LOW);
+		return false;
+	}
+
+	
+	currentlyLogging = false;
+
+	return true;
 }
 
 #endif
