@@ -7,29 +7,29 @@ namespace TD2DE
 	class TD2DE_Audio
 	{
 	private:
-		int	mhz,//the speaker frequency to work with, defaulted to 22050
-			channels,
-			bitRate;//defaulted to 2048kb, more = higher quality but laggier
+		int	frequency = 22050,//the speaker frequency to work with, defaulted to 22050
+			channels = 2,
+			chunkSize = 4096;//defaulted to 2048kb, more = higher quality but laggier
 
 	public:
-		int GetMhz();
-		void SetMhz(int newMhz);
+		int GetFrequency();
+		void SetFrequency(int newfrequency);
 		int GetChannels();
 		void SetChannels(int newChannels);
-		int GetBitRate();
-		void SetBitRate(int newBitRate);
+		int GetChunkSize();
+		void SetChunkSize(int newChunkSize);
 
 	}TD2DE_AUDIO;
 }
 
-int TD2DE::TD2DE_Audio::GetMhz()
+int TD2DE::TD2DE_Audio::GetFrequency()
 {
-	return mhz;
+	return frequency;
 }
 
-void TD2DE::TD2DE_Audio::SetMhz(int newMhz)
+void TD2DE::TD2DE_Audio::SetFrequency(int newfrequency)
 {
-	mhz = newMhz;
+	frequency = newfrequency;
 }
 
 int TD2DE::TD2DE_Audio::GetChannels()
@@ -42,14 +42,14 @@ void TD2DE::TD2DE_Audio::SetChannels(int newChannels)
 	channels = newChannels;
 }
 
-int TD2DE::TD2DE_Audio::GetBitRate()
+int TD2DE::TD2DE_Audio::GetChunkSize()
 {
-	return bitRate;
+	return chunkSize;
 }
 
-void TD2DE::TD2DE_Audio::SetBitRate(int newBitRate)
+void TD2DE::TD2DE_Audio::SetChunkSize(int newChunkSize)
 {
-	bitRate = newBitRate;
+	chunkSize = newChunkSize;
 }
 
 

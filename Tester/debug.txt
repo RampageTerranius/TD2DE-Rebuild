@@ -3,8 +3,12 @@
 [TD2DE_Engine]Video initialization success!
 [TD2DE_Engine]Image Loading engine initialization success!
 [TD2DE_Engine]Audio initialization success!
-[TD2DE_Engine]Error: Initialize-SDL_Init_Audio_Mixer: WASAPI can't find requested audio endpoint: Element not found.
-
+[TD2DE_Engine]Timer initialization success!
+[TD2DE_Engine]TTF engine initialization success!
+[TD2DE_Render]Primary Window creation success!
+[TD2DE_Render]Primary Renderer creation success!
+[TD2DE_Engine]Render engine initialization success!
+[TD2DE_Engine]Engine started successfully!
 [TD2DE_Engine]Shutting down engine...
 [TD2DE_Engine]Clearing textures from list...
 [TD2DE_Engine]Engine has shut down, shutting down debug logging...

@@ -129,7 +129,9 @@
     <ClInclude Include="TD2DE_Audio.h" />
     <ClInclude Include="TD2DE_Debug.h" />
     <ClInclude Include="TD2DE_Engine.h" />
+    <ClInclude Include="TD2DE_Keyboard.h" />
     <ClInclude Include="TD2DE_Main.h" />
+    <ClInclude Include="TD2DE_Mouse.h" />
     <ClInclude Include="TD2DE_Render.h" />
     <ClInclude Include="TD2DE_Texture.h" />
   </ItemGroup>

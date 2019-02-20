@@ -89,10 +89,7 @@ void TD2DE::TD2DE_Debug::LogMessage(std::string message, eDebug debugLevel)
 	if (currentlyLogging && debugMode >= debugLevel)
 	{
 		//push given error message to file
-		file << message.data();
-
-		//end line for error
-		file << "\n";
+		file << message.data() << "\n";
 		
 		file.flush();
 	}

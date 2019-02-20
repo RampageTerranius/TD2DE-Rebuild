@@ -18,8 +18,8 @@ namespace TD2DE
 
 	public:
 		//sdl window and renderer build
-		SDL_Window * Window = NULL;
-		SDL_Renderer* Renderer = NULL;
+		SDL_Window * window = NULL;
+		SDL_Renderer* renderer = NULL;
 
 		std::string GetRenderScaleQuality();
 		void SetRenderScaleQuality(std::string newRenderScaleQuality);
@@ -103,12 +103,12 @@ void TD2DE::TD2DE_Render::SetFrameRateLimit(int newFrameRateLimit)
 
 void TD2DE::TD2DE_Render::RenderClear()
 {
-	SDL_RenderClear(Renderer);
+	SDL_RenderClear(renderer);
 }
 
 void TD2DE::TD2DE_Render::RenderPresent()
 {
-	SDL_RenderPresent(Renderer);
+	SDL_RenderPresent(renderer);
 }
 
 bool TD2DE::TD2DE_Render::Start()
@@ -123,7 +123,7 @@ bool TD2DE::TD2DE_Render::Start()
 	else
 		flags = SDL_WINDOW_OPENGL;
 	//create the base window for the program
-	TD2DE_RENDER.Window = SDL_CreateWindow
+	TD2DE_RENDER.window = SDL_CreateWindow
 	(
 		GetWindowName().c_str(),
 		SDL_WINDOWPOS_UNDEFINED,
@@ -133,25 +133,25 @@ bool TD2DE::TD2DE_Render::Start()
 		flags
 	);
 
-	if (TD2DE_RENDER.Window == NULL)
+	if (TD2DE_RENDER.window == NULL)
 	{
-		TD2DE_DEBUG.LogMessage("Error: Initialize-SDL_Init-Initialize_Renderer: Unable to initialize primary window", DEBUG_LOW);
+		TD2DE_DEBUG.LogMessage("[TD2DE_Render]Error: Initialize-SDL_Init-Initialize_Renderer: Unable to initialize primary window", DEBUG_LOW);
 		return false;
 	}
 	else
-		TD2DE_DEBUG.LogMessage("Info: Primary Window creation success!", DEBUG_LOW);
+		TD2DE_DEBUG.LogMessage("[TD2DE_Render]Primary Window creation success!", DEBUG_LOW);
 
 	//create primary renderer (using hardware)
-	if ((TD2DE_RENDER.Renderer = SDL_CreateRenderer(TD2DE_RENDER.Window, -1, SDL_RENDERER_ACCELERATED)) == NULL)
+	if ((TD2DE_RENDER.renderer = SDL_CreateRenderer(TD2DE_RENDER.window, -1, SDL_RENDERER_ACCELERATED)) == NULL)
 	{
-		TD2DE_DEBUG.LogMessage("Error: Initialize-SDL_Init-Initialize_Renderer: Unable to initialize renderer", DEBUG_LOW);
+		TD2DE_DEBUG.LogMessage("[TD2DE_Render]Error: Initialize-SDL_Init-Initialize_Renderer: Unable to initialize renderer", DEBUG_LOW);
 		return false;
 	}
 	else
-		TD2DE_DEBUG.LogMessage("Info: Primary Renderer creation success!", DEBUG_LOW);
+		TD2DE_DEBUG.LogMessage("[TD2DE_Render]Primary Renderer creation success!", DEBUG_LOW);
 
-	SDL_SetRenderDrawBlendMode(TD2DE_RENDER.Renderer, SDL_BLENDMODE_BLEND);
-	SDL_SetRenderDrawColor(TD2DE_RENDER.Renderer, 0x00, 0x00, 0x00, 0xFF);
+	SDL_SetRenderDrawBlendMode(TD2DE_RENDER.renderer, SDL_BLENDMODE_BLEND);
+	SDL_SetRenderDrawColor(TD2DE_RENDER.renderer, 0x00, 0x00, 0x00, 0xFF);
 
 	return true;
 }

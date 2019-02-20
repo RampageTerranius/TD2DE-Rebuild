@@ -181,7 +181,7 @@ int TD2DE::Texture::LoadFile(std::string location)
 	SDL_SetColorKey(surface, true, SDL_MapRGB(surface->format, 255, 0, 255));
 
 	TextureNode tex;
-	tex.SetTexture(SDL_CreateTextureFromSurface(TD2DE_MAIN.renderer, surface));
+	tex.SetTexture(SDL_CreateTextureFromSurface(TD2DE_RENDER.renderer, surface));
 
 	if (tex.GetTexture() == NULL)
 	{

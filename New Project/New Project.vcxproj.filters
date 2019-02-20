@@ -36,5 +36,11 @@
     <ClInclude Include="TD2DE_Render.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TD2DE_Keyboard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TD2DE_Mouse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

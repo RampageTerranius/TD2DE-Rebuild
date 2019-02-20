@@ -25,9 +25,12 @@ Created by Tyler Brown
 //TD2DE files
 #include "TD2DE_Debug.h"
 #include "TD2DE_Main.h"
+#include "TD2DE_Mouse.h"
+#include "TD2DE_Keyboard.h"
 #include "TD2DE_Render.h"
 #include "TD2DE_Texture.h"
 #include "TD2DE_Audio.h"
 #include "TD2DE_Engine.h"
+
 
 #endif
