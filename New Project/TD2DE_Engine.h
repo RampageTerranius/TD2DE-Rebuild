@@ -14,16 +14,46 @@ namespace TD2DE
 		void Stop();
 
 	private:
+		bool CheckPrerequisites();
+
+	private:
 	}TD2DE_ENGINE;
+
 }
 
+bool TD2DE::TD2DE_Engine::CheckPrerequisites()
+{
+	//check if the engien is already marked as running
+	if (TD2DE::TD2DE_MAIN.EngineIsRunning())
+	{
+		TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Error: Attempt to start engine when engine is already running!", DEBUG_LOW);
+		return false;
+	}
 
+	if (TD2DE::TD2DE_RENDER.GetFrameRateLimit() <= 0)
+	{
+		TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Error: Engine framerate of " + std::to_string(TD2DE::TD2DE_RENDER.GetFrameRateLimit()) + " is not valid. Please set engines target framerate to an acceptible level", DEBUG_LOW);
+		return false;
+	}
+
+	return true;
+}
 
 bool TD2DE::TD2DE_Engine::Start()
 {
 	TD2DE::TD2DE_DEBUG.Start();
 
-	TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Starting up engine...", DEBUG_LOW);
+	TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Attempting to start engine...", DEBUG_LOW);
+
+	//presetup checklist
+	if (!CheckPrerequisites())
+	{
+		return false;
+		TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Error: Pre-Requisite checklist has failed", DEBUG_LOW);
+	}
+	else
+		TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Pre-Requisite checklist success!", DEBUG_LOW);
+
 
 	//initialize SDL
 	//video
@@ -117,7 +147,10 @@ bool TD2DE::TD2DE_Engine::Start()
 		return false;
 	}
 	else
+	{
+		TD2DE::TD2DE_StartTimers(true, true);//TODO: give the option in the engine to choose not to cap fps or to not check fps
 		TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Timer initialization success!", DEBUG_LOW);
+	}
 
 	//ttf loading
 	if (TTF_Init() == -1)
@@ -159,6 +192,7 @@ bool TD2DE::TD2DE_Engine::Start()
 	TD2DE::TD2DE_MAIN.engineRunning = true;
 
 	TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Engine started successfully!", DEBUG_LOW);
+
 	return true;
 }
 
@@ -169,6 +203,8 @@ void TD2DE::TD2DE_Engine::Stop()//TODO: add the rest of the stuff that needs to 
 	//cleanup all textures in storage
 	TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Clearing textures from list...", DEBUG_HIGH);
 	TD2DE_TEXTURE.RemoveAllTextures();
+
+	TD2DE::TD2DE_StopTimers(true, true);
 
 	TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Engine has shut down, shutting down debug logging...", DEBUG_LOW);
 
