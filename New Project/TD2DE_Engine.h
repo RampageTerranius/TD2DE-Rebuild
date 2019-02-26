@@ -13,6 +13,8 @@ namespace TD2DE
 		bool Start();
 		void Stop();
 
+		
+
 	private:
 		bool CheckPrerequisites();
 
@@ -148,7 +150,8 @@ bool TD2DE::TD2DE_Engine::Start()
 	}
 	else
 	{
-		TD2DE::TD2DE_StartTimers(true, true);//TODO: give the option in the engine to choose not to cap fps or to not check fps
+		TD2DE::TD2DE_StartFPSTimer();//TODO: give the option in the engine to choose not to cap fps or to not check fps
+		TD2DE::TD2DE_CurrentFrames = 0;
 		TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Timer initialization success!", DEBUG_LOW);
 	}
 

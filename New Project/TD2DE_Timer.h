@@ -4,6 +4,8 @@
 
 namespace TD2DE
 {
+	Uint32 TD2DE_CurrentFrames;
+
 	class TD2DE_Timer
 	{
 	public:
@@ -16,21 +18,17 @@ namespace TD2DE
 		bool IsStarted();
 		bool IsPaused();
 
-		int GetTicks();
+		Uint32  GetTicks();
 
 	private:
-		int PauseTick,
-			StartTick;
+		Uint32 PauseTick,
+				StartTick;
 
 		bool Started,
 			Paused;
 
 	}TD2DE_FPSTIMER, TD2DE_CAPTIMER;
 }
-
-//TODO: move this into the engine instead
-int TD2DE_CurrentFrame = 0,
-	TD2DE_Fps = 0;
 
 TD2DE::TD2DE_Timer::TD2DE_Timer()
 {
@@ -40,7 +38,7 @@ TD2DE::TD2DE_Timer::TD2DE_Timer()
 	Paused = false;
 }
 
-int TD2DE::TD2DE_Timer::GetTicks()
+Uint32  TD2DE::TD2DE_Timer::GetTicks()
 {
 	if (Started)
 	{
@@ -103,46 +101,32 @@ bool TD2DE::TD2DE_Timer::IsStarted()
 
 namespace TD2DE
 {
+	//int ticksPerFrame = (1000 / TD2DE::TD2DE_RENDER.GetFrameRateLimit());
+	
 	void TD2DE_TimeHandle()
 	{
 		TD2DE::TD2DE_DEBUG.LogMessage("[TD2DE_Timer]TimeHandle begin", TD2DE::DEBUG_HIGH);
 
 		//limiting fps
-		int ticksPerFrame = (1000 / TD2DE::TD2DE_RENDER.GetFrameRateLimit());
 
-		int frameTicks = TD2DE::TD2DE_CAPTIMER.GetTicks();
+		TD2DE::TD2DE_MAIN.avgFPS = TD2DE_CurrentFrames / (TD2DE_FPSTIMER.GetTicks() / 1000.f);
 
-		//getting fps
-		if (TD2DE::TD2DE_FPSTIMER.GetTicks() < 1000)
-		{
-			TD2DE_CurrentFrame++;
-		}
-		else
-		{
-			TD2DE::TD2DE_FPSTIMER.Start();
-			TD2DE_Fps = TD2DE_CurrentFrame;
-			TD2DE_CurrentFrame = 0;
-		}
+		if (TD2DE::TD2DE_MAIN.avgFPS > 2000000)
+			TD2DE::TD2DE_MAIN.avgFPS = 0;
 
-		TD2DE::TD2DE_DEBUG.LogMessage("[TD2DE_Timer]fps: " + std::to_string(TD2DE_Fps), TD2DE::DEBUG_HIGH);
+		TD2DE::TD2DE_DEBUG.LogMessage("[TD2DE_Timer]fps: " + std::to_string(TD2DE::TD2DE_MAIN.avgFPS), TD2DE::DEBUG_HIGH);
 
-		//delaying to wait for next tiem to print frame
-		if (frameTicks < ticksPerFrame)
-			SDL_Delay(ticksPerFrame - frameTicks);
+		++TD2DE_CurrentFrames;
 
 		TD2DE::TD2DE_DEBUG.LogMessage("[TD2DE_Timer]TimeHandle end", TD2DE::DEBUG_HIGH);
 	}
 
-	//start the internal fps and cap timers (MUST be inside the main game loop to use the cap timer)
-	void TD2DE_StartTimers(bool Cap, bool Fps)
+
+	void TD2DE_StartFPSTimer()
 	{
-		//forcivly restart the cap tiemr every time as we need it to do so
-		if (Cap == true)
-			TD2DE::TD2DE_CAPTIMER.Start();
 		//fps timer only needs to be activated once in its life and can determine the fps from there on
-		if (Fps == true)
-			if (TD2DE::TD2DE_FPSTIMER.IsStarted() == false)
-				TD2DE::TD2DE_FPSTIMER.Start();
+		if (TD2DE::TD2DE_FPSTIMER.IsStarted() == false)
+		TD2DE::TD2DE_FPSTIMER.Start();
 	}
 
 	//shutdown fps and cap timers (this will automatically be called by the cleanup procedure so its not nessicary to use it yourself)

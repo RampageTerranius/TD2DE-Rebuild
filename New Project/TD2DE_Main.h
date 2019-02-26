@@ -11,6 +11,8 @@ namespace TD2DE
 	public:
 		bool EngineIsRunning();
 		bool engineRunning = false;//TODO: move this into TD2DE_Engine instead, there is no reason for this class to exist
+
+		float avgFPS;
 		
 	private:
 		

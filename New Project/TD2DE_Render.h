@@ -142,7 +142,7 @@ bool TD2DE::TD2DE_Render::Start()
 		TD2DE_DEBUG.LogMessage("[TD2DE_Render]Primary Window creation success!", DEBUG_LOW);
 
 	//create primary renderer (using hardware)
-	if ((TD2DE_RENDER.renderer = SDL_CreateRenderer(TD2DE_RENDER.window, -1, SDL_RENDERER_ACCELERATED)) == NULL)
+	if ((TD2DE_RENDER.renderer = SDL_CreateRenderer(TD2DE_RENDER.window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC)) == NULL)//TODO: remove vsync once engine handles own fps again
 	{
 		TD2DE_DEBUG.LogMessage("[TD2DE_Render]Error: Initialize-SDL_Init-Initialize_Renderer: Unable to initialize renderer", DEBUG_LOW);
 		return false;
