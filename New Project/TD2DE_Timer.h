@@ -101,13 +101,10 @@ bool TD2DE::TD2DE_Timer::IsStarted()
 
 namespace TD2DE
 {
-	//int ticksPerFrame = (1000 / TD2DE::TD2DE_RENDER.GetFrameRateLimit());
 	
 	void TD2DE_TimeHandle()
 	{
 		TD2DE::TD2DE_DEBUG.LogMessage("[TD2DE_Timer]TimeHandle begin", TD2DE::DEBUG_HIGH);
-
-		//limiting fps
 
 		TD2DE::TD2DE_MAIN.avgFPS = TD2DE_CurrentFrames / (TD2DE_FPSTIMER.GetTicks() / 1000.f);
 
@@ -140,5 +137,6 @@ namespace TD2DE
 				TD2DE::TD2DE_FPSTIMER.Stop();
 	}
 }
+
 
 #endif

@@ -49,7 +49,7 @@ namespace TD2DE
 	{
 	public:
 		int GetTextureLocation(std::string textureName);
-		TextureNode GetTextureAt(int location);
+		TextureNode& GetTextureAt(int location);
 		void RemoveTextureAt(size_t location);
 		void RemoveAllTextures();
 		int LoadFile(std::string location);
@@ -144,9 +144,9 @@ int TD2DE::Texture::GetTextureLocation(std::string textureName)
 	return val;
 }
 
-TD2DE::TextureNode TD2DE::Texture::GetTextureAt(int location)
+TD2DE::TextureNode& TD2DE::Texture::GetTextureAt(int location)
 {
-	return texture.at(location);
+	return texture[location];
 }
 
 void TD2DE::Texture::RemoveTextureAt(size_t location)
@@ -202,7 +202,7 @@ int TD2DE::Texture::LoadFile(std::string location)
 	rect.x = 0;
 	rect.y = 0;
 
-	tex.SetRenderRectange(rect);
+	tex.SetRenderRectange(rect);	
 
 	TD2DE_TEXTURE.texture.push_back(tex);
 	int val = TD2DE_TEXTURE.texture.size();

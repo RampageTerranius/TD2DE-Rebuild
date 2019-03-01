@@ -133,9 +133,11 @@
     <ClInclude Include="TD2DE_Keyboard.h" />
     <ClInclude Include="TD2DE_Main.h" />
     <ClInclude Include="TD2DE_Mouse.h" />
+    <ClInclude Include="TD2DE_Object.h" />
     <ClInclude Include="TD2DE_Render.h" />
     <ClInclude Include="TD2DE_Texture.h" />
     <ClInclude Include="TD2DE_Timer.h" />
+    <ClInclude Include="TD2DE_Ttf.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

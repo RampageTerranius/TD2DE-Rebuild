@@ -48,5 +48,11 @@
     <ClInclude Include="TD2DE_Event.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TD2DE_Ttf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TD2DE_Object.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

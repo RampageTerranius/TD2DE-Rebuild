@@ -13,6 +13,8 @@ namespace TD2DE
 		bool Start();
 		void Stop();
 
+		void EngineHandle();
+
 		
 
 	private:
@@ -201,19 +203,26 @@ bool TD2DE::TD2DE_Engine::Start()
 
 void TD2DE::TD2DE_Engine::Stop()//TODO: add the rest of the stuff that needs to be shutdown before exit here
 {
-	TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Shutting down engine...", DEBUG_HIGH);
+	TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Shutting down engine...", DEBUG_MEDIUM);
 
 	//cleanup all textures in storage
-	TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Clearing textures from list...", DEBUG_HIGH);
+	TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Clearing textures from list...", DEBUG_MEDIUM);
 	TD2DE_TEXTURE.RemoveAllTextures();
 
 	TD2DE::TD2DE_StopTimers(true, true);
 
-	TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Engine has shut down, shutting down debug logging...", DEBUG_LOW);
+	TD2DE_DEBUG.LogMessage("[TD2DE_Engine]Engine has shut down, shutting down debug logging...", DEBUG_MEDIUM);
 
 	TD2DE::TD2DE_DEBUG.Stop();
 
 	TD2DE::TD2DE_MAIN.engineRunning = false;		
+}
+
+void TD2DE::TD2DE_Engine::EngineHandle()
+{
+	TD2DE::TD2DE_RENDER.Render();
+	TD2DE::TD2DE_EventHandle();
+	TD2DE::TD2DE_TimeHandle();
 }
 
 

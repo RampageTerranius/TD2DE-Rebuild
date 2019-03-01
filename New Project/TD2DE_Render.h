@@ -36,6 +36,7 @@ namespace TD2DE
 
 		void RenderClear();
 		void RenderPresent();
+		void Render();
 
 		bool Start();
 	}TD2DE_RENDER;
@@ -109,6 +110,14 @@ void TD2DE::TD2DE_Render::RenderClear()
 void TD2DE::TD2DE_Render::RenderPresent()
 {
 	SDL_RenderPresent(renderer);
+}
+
+void TD2DE::TD2DE_Render::Render()
+{
+	TD2DE::TD2DE_DEBUG.LogMessage("[TD2DE_Timer]Render begin", TD2DE::DEBUG_HIGH);
+	SDL_RenderClear(renderer);
+	SDL_RenderPresent(renderer);
+	TD2DE::TD2DE_DEBUG.LogMessage("[TD2DE_Timer]Render end", TD2DE::DEBUG_HIGH);
 }
 
 bool TD2DE::TD2DE_Render::Start()

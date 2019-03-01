@@ -9,7 +9,7 @@ namespace TD2DE
 	private:
 		int	frequency = 22050,//the speaker frequency to work with, defaulted to 22050
 			channels = 2,
-			chunkSize = 4096;//defaulted to 2048kb, more = higher quality but laggier
+			chunkSize = 4096;//defaulted to 4096kb, more = higher quality but laggier
 
 	public:
 		int GetFrequency();
