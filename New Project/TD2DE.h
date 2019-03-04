@@ -29,6 +29,7 @@ Created by Tyler Brown
 #include "TD2DE_Keyboard.h"
 #include "TD2DE_Event.h"
 #include "TD2DE_Render.h"
+#include "TD2DE_RenderList.h"
 #include "TD2DE_TTF.h"
 #include "TD2DE_Texture.h"
 #include "TD2DE_Object.h"

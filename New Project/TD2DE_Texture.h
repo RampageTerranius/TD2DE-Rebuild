@@ -8,7 +8,7 @@
 namespace TD2DE
 {
 	//primary class handling texture storage
-	class TextureNode
+	class TextureNode //TODO: remove rendering location form texture and move it into renderlist
 	{
 	public:
 		TextureNode()

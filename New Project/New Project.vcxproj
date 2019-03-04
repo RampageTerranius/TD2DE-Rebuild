@@ -135,6 +135,7 @@
     <ClInclude Include="TD2DE_Mouse.h" />
     <ClInclude Include="TD2DE_Object.h" />
     <ClInclude Include="TD2DE_Render.h" />
+    <ClInclude Include="TD2DE_RenderList.h" />
     <ClInclude Include="TD2DE_Texture.h" />
     <ClInclude Include="TD2DE_Timer.h" />
     <ClInclude Include="TD2DE_Ttf.h" />
