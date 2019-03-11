@@ -15,8 +15,8 @@ namespace TD2DE
 		std::string textureID;//name of the texture used in map<string, cTexture> TD2DE_TEXTURE			
 
 		double x,//left right
-			y,//up down
-			dirPointing;
+			   y,//up down
+			   dirPointing;
 
 		//functions
 	public:
@@ -53,32 +53,15 @@ void TD2DE::TD2DE_Object::Delete()
 	dirPointing = 0.0;
 }
 
-void TD2DE::TD2DE_Object::Render()
+void TD2DE::TD2DE_Object::AddToRender()
 {
-	TD2DE::TextureNode* lTEX = GetTexture();
-	SDL_Rect sRenderRect = lTEX->GetRenderRectange();
-	SDL_Rect tRenderRect;
-
-	if (sRenderRect.h == 0 && sRenderRect.w == 0 && sRenderRect.x == 0 && sRenderRect.y == 0)
-	{
-		sRenderRect.h = lTEX->GetHeight();
-		sRenderRect.w = lTEX->GetWidth();
-		sRenderRect.x = 0;
-		sRenderRect.y = 0;
-		tRenderRect.h = lTEX->GetHeight();
-		tRenderRect.w = lTEX->GetWidth();
-	}
-	else
-	{
-		tRenderRect.h = sRenderRect.h;
-		tRenderRect.w = sRenderRect.w;
-	}
-	tRenderRect.x = x;
-	tRenderRect.y = y;
-
-	SDL_RenderCopyEx(TD2DE_RENDER.renderer, lTEX->GetTexture(), &sRenderRect, &tRenderRect, dirPointing, NULL, SDL_FLIP_NONE);
+	
 }
 
+void TD2DE::TD2DE_Object::RemoveFromRender()
+{
+
+}
 std::string TD2DE::TD2DE_Object::GetTextureID()
 {
 	return textureID;

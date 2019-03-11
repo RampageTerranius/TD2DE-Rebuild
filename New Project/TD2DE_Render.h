@@ -115,8 +115,16 @@ void TD2DE::TD2DE_Render::RenderPresent()
 void TD2DE::TD2DE_Render::Render()
 {
 	TD2DE::TD2DE_DEBUG.LogMessage("[TD2DE_Timer]Render begin", TD2DE::DEBUG_HIGH);
+
 	SDL_RenderClear(renderer);
+
+	//go thorugh render list and render all textures as needed
+
+	//foreach()
+
+
 	SDL_RenderPresent(renderer);
+
 	TD2DE::TD2DE_DEBUG.LogMessage("[TD2DE_Timer]Render end", TD2DE::DEBUG_HIGH);
 }
 
